@@ -1,10 +1,10 @@
 import { Request } from "express";
 import { IGenericResponse } from "../../../interfaces/common";
-import { AuthService } from "../../../shared/axios";
+import { AuthService, CoreService } from "../../../shared/axios";
 
 const loginUser = async (req: Request): Promise<IGenericResponse> => {
     console.log(req.body);
-    const response: IGenericResponse = await AuthService.post('/auth/login', req.body);
+    const response: IGenericResponse = await CoreService.post('/auth/login', req.body);
     return response;
 };
 

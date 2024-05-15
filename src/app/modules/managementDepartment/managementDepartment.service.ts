@@ -1,10 +1,10 @@
 import { Request } from 'express';
 import { IGenericResponse } from '../../../interfaces/common';
-import { AuthService } from '../../../shared/axios';
+import { AuthService, CoreService } from '../../../shared/axios';
 
 const insertIntoDB = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await AuthService.post(
-    `/management-departments/create-department`,
+  const response: IGenericResponse = await CoreService.post(
+    `/management-departments`,
     req.body,
     {
       headers: {
@@ -16,7 +16,7 @@ const insertIntoDB = async (req: Request): Promise<IGenericResponse> => {
 };
 
 const getAllFromDB = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await AuthService.get('/management-departments', {
+  const response: IGenericResponse = await CoreService.get('/management-departments', {
     params: req.query,
     headers: {
       Authorization: req.headers.authorization
@@ -27,7 +27,7 @@ const getAllFromDB = async (req: Request): Promise<IGenericResponse> => {
 
 const getByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await AuthService.get(`/management-departments/${id}`, {
+  const response: IGenericResponse = await CoreService.get(`/management-departments/${id}`, {
     headers: {
       Authorization: req.headers.authorization
     }
