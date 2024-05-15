@@ -14,9 +14,7 @@ app.use(cookieParser());
 
 app.use('/api/v1', routes);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+
 
 app.use(globalExceptionHandler);
 

@@ -1,6 +1,4 @@
 import express from 'express';
-import { ENUM_USER_ROLE } from '../../../enums/user';
-import auth from '../../middlewares/auth';
 import validateRequest from '../../middlewares/validateRequest';
 import { AuthenticationController } from './auth.controller';
 import { AuthValidation } from './auth.validation';
@@ -23,7 +21,7 @@ router.post('/reset-password', AuthenticationController.resetPassword);
 
 router.post(
   '/change-password',
-  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.STUDENT, ENUM_USER_ROLE.FACULTY),
+
   validateRequest(AuthValidation.changePasswordZodSchema),
   AuthenticationController.changePassword
 );

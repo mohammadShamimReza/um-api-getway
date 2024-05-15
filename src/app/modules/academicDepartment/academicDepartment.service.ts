@@ -4,6 +4,8 @@ import { CoreService as HttpService } from '../../../shared/axios';
 
 
 const insertIntoDB = async (req: Request): Promise<IGenericResponse> => {
+  console.log(req.body);
+
   const response: IGenericResponse = await HttpService.post(`/academic-departments`, req.body, {
     headers: {
       Authorization: req.headers.authorization
@@ -19,6 +21,7 @@ const getAllFromDB = async (req: Request): Promise<IGenericResponse> => {
       Authorization: req.headers.authorization
     }
   });
+  console.log(response);
   return response;
 };
 
